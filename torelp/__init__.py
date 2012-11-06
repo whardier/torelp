@@ -19,14 +19,14 @@ import re
 RSYSLOG_FORWARD_FORMAT = re.compile(r'<(?P<pri>\w+)>(?P<rfc3339>\S+) (?P<hostname>\S+) (?P<syslogtag>\S+): (?P<msg>.*)')
 RSYSLOG_FORWARD_FORMAT_PID = re.compile(r'<(?P<pri>\w+)>(?P<rfc3339>\S+) (?P<hostname>\S+) (?P<syslogtag>\S+)\[(?P<pid>\w+)\]: (?P<msg>.*)')
 
-class ToRelpServer(TCPServer):
+class ToRELPServer(TCPServer):
     def handle_stream(self, stream, address):
-        ToRelpConnection(stream, address, server=self)
+        ToRELPConnection(stream, address, server=self)
 
     def handle_syslog_message(self, message):
         """ Override Me """
 
-class ToRelpConnection(object):
+class ToRELPConnection(object):
 
     def __init__(self, stream, address, server):
         self.stream = stream

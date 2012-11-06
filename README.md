@@ -28,3 +28,8 @@ Why?
 ====
 
 New cool message queue using reliable messaging services that is simple to configure
+
+How?
+====
+
+Check out ```test.py```.  Just inherit the ToRelp

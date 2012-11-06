@@ -1,23 +1,20 @@
 #!/usr/bin/env python
 
+import pprint
 import simplejson
 
 from tornado.ioloop import IOLoop
 
-from torelp import ToRelpServer
+from torelp import ToRELPServer
 
-class MyToRelpServer(ToRelpServer):
+class MyToRELPServer(ToRELPServer):
     def handle_syslog_message(self, msg):
-        import pprint
-        #pprint.pprint(msg)
-        if msg['syslogtag'] == 'asterisk':
+        if msg['syslogtag'] == 'jsontest':
             if 'JSON:' in msg['msg']:
                 notjson, json = msg['msg'].strip().split('JSON:')
-                #pprint.pprint(json)
-                pprint.pprint(simplejson.loads(json))
-            
+                pprint.pprint(simplejson.loads(json)) #This is just an example
 
-torelpserver = MyToRelpServer()
+torelpserver = MyToRELPServer()
 torelpserver.listen(20514)
 
 IOLoop.instance().start()
